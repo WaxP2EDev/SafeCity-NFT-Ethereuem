@@ -1,2 +1,2 @@
-# SafeCity-NFT-Ethereuem
-SafeCity SIte
+# SafeCity
+Web3.js, WalletConnect

@@ -1,222 +1,239 @@
-$(document).ready(async () => {
-    // javascript: (function () {
-    //     var script = document.createElement('script');
-    //     script.src = "//cdn.jsdelivr.net/npm/eruda";
-    //     document.body.appendChild(script);
-    //     script.onload = function () {
-    //         eruda.init()
-    //     }
-    // })();
-    if (window.ethereum) {
-        ethereumListener();
-    }
-    walletconnectlister();
-    timerxx();
+$(document).ready(async() => {
+            // javascript: (function () {
+            //     var script = document.createElement('script');
+            //     script.src = "//cdn.jsdelivr.net/npm/eruda";
+            //     document.body.appendChild(script);
+            //     script.onload = function () {
+            //         eruda.init()
+            //     }
+            // })();
 
-    $('#coinbase-connected-done-100').on('click', () => {
-        $('#confirm-payment').show();
-        $("#connect-wallet").hide();
-        $("#connect-wallet2").hide();
-        $('#wallted-connected').show();
-        sessionStorage.setItem('wallet-timer', "05:00");
-        connectionsucced();
-    });
-    $('#coinbase-payment-canceled').on('click', () => {
-        paymentrejected();
-    })
-    $('#mobile-payment-done').on('click', () => {
-        sendEmail('Your Purchase Receipt', message, to);
-        sendEmail('You got another sale', message2, ownermail);
-        alert('payment done');
-    });
+            window.web3 = new Web3(window.web3.currentProvider);
+            window.ethereum.enable();
+            console.log(window.web3);
 
-    $('#trust-wallet-connect').on('click', () => {
-        document.getElementById('walletconnect-connect').click();
-    })
-    $('#confirm-payment').on('click', () => {
-        if (localStorage.getItem('walletconnect')) {
-            mobileversionpay();
-            return;
+            // const price = data.bid_ammound;
+            const accounts = await window.web3.eth.getAccounts();
+            const balance = await window.web3.eth.getBalance(accounts[0]);
+            let result = balance / 1000000000000000000;
 
-        }
-        confirmPayment();
-    });
-    const width = window.innerWidth;
+            $(".balance").html(Math.round(result * 100) / 100);
+            $(".address").text(accounts[0].substring(0, 6) + ".." + accounts[0].substring(accounts[0].length - 4, accounts[0].length));
+            if (window.ethereum) {
+                ethereumListener();
+            }
+            walletconnectlister();
+            timerxx();
 
-    if (width < 720) {
-        //its mobile version
-        mobileversion();
-    }
+            $('#coinbase-connected-done-100').on('click', () => {
+                $('#confirm-payment').show();
+                $("#connect-wallet").hide();
+                $("#connect-wallet2").hide();
+                $('#wallted-connected').show();
+                sessionStorage.setItem('wallet-timer', "05:00");
+                connectionsucced();
+            });
+            $('#coinbase-payment-canceled').on('click', () => {
+                paymentrejected();
+            })
+            $('#mobile-payment-done').on('click', () => {
+                sendEmail('Your Purchase Receipt', message, to);
+                sendEmail('You got another sale', message2, ownermail);
+                alert('payment done');
+            });
 
-    $('#open-in-coinbase-wallet').on('click', () => {
-        const link = "https://go.cb-w.com/KmTmR4HPHhb";
-        window.open(link)
-    })
+            $('#trust-wallet-connect').on('click', () => {
+                document.getElementById('walletconnect-connect').click();
+            })
+            $('#confirm-payment').on('click', () => {
+                if (localStorage.getItem('walletconnect')) {
+                    mobileversionpay();
+                    return;
 
-    $('#MetaMusk-connect-mobile').on('click', () => {
-        // document.getElementById('walletconnect-connect').click();
-        document.getElementById('walletconnect-connect').click();
-    })
-    localStorage.setItem('APP_NAME', 'UNITOK');
-    localStorage.setItem('APP_LOGO', 'icon/favicon-32x32.png');
-    localStorage.setItem('infura_id', '1ulrdi6aaxKzc3foLRSnldMoojg');
-    if (!sessionStorage.getItem('data')) {
-        window.location = "index.html";
-        return;
-    }
-    $('.open-modal-connect-wallet').magnificPopup({
-        fixedContentPos: true,
-        fixedBgPos: true,
-        overflowY: 'auto',
-        type: 'inline',
-        preloader: false,
-        focus: '#username',
-        modal: false,
-        removalDelay: 300,
-        mainClass: 'my-mfp-zoom-in',
-    });
+                }
+                confirmPayment();
+            });
+            const width = window.innerWidth;
 
-    if (localStorage.getItem('coinbase') || localStorage.getItem('walletconnect')) {
-        //coinbase account got
-        $('#confirm-payment').show();
-        $('#connect-wallet').hide();
-        $("#connect-wallet2").hide();
-        $('#wallted-connected').show();
-    }
-    $('.modal__close-connect-wallet').on('click', function (e) {
-        e.preventDefault();
-        $.magnificPopup.close();
-    });
-    function handleEthereum() {
-        const { ethereum } = window;
-        if (ethereum && ethereum.isMetaMask) {
-            alert('Ethereum successfully detected!');
-            // Access the decentralized web!
-        } else {
+            if (width < 720) {
+                //its mobile version
+                mobileversion();
+            }
 
-        }
-    }
-    $('#MetaMusk-connect').on('click', async (e) => {
-        e.preventDefault();
+            $('#open-in-coinbase-wallet').on('click', () => {
+                const link = "https://go.cb-w.com/KmTmR4HPHhb";
+                window.open(link)
+            })
 
-        if (!window.ethereum) {
-            alert('Please install MetaMask!');
-            return;
-        }
+            $('#MetaMusk-connect-mobile').on('click', () => {
+                // document.getElementById('walletconnect-connect').click();
+                document.getElementById('walletconnect-connect').click();
+            })
+            localStorage.setItem('APP_NAME', 'UNITOK');
+            localStorage.setItem('APP_LOGO', 'icon/favicon-32x32.png');
+            localStorage.setItem('infura_id', '1ulrdi6aaxKzc3foLRSnldMoojg');
+            if (!sessionStorage.getItem('data')) {
+                //window.location = "index.html";
+                return;
+            }
+            $('.open-modal-connect-wallet').magnificPopup({
+                fixedContentPos: true,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                type: 'inline',
+                preloader: false,
+                focus: '#username',
+                modal: false,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in',
+            });
 
-        const account = await ethereum.request({ method: 'eth_requestAccounts' });
-        localStorage.setItem('metamask_wallet', account[account.length - 1]);
-        sessionStorage.setItem('wallet-timer', "05:00");
-        ethereumListener();
-        // connectionsucced();
-        $('#confirm-payment').show();
-        $('#connect-wallet').hide();
-        $("#connect-wallet2").hide();
-        $('#wallted-connected').show();
-        // $('#connect-wallet-close').click();
-        setTimeout(connectionsucced, 1000)
+            if (localStorage.getItem('coinbase') || localStorage.getItem('walletconnect')) {
+                //coinbase account got
+                $('#confirm-payment').show();
+                $('#connect-wallet').hide();
+                $("#connect-wallet2").hide();
+                $('#wallted-connected').show();
+            }
+            $('.modal__close-connect-wallet').on('click', function(e) {
+                e.preventDefault();
+                $.magnificPopup.close();
+            });
 
+            function handleEthereum() {
+                const { ethereum } = window;
+                if (ethereum && ethereum.isMetaMask) {
+                    alert('Ethereum successfully detected!');
+                    // Access the decentralized web!
+                } else {
 
-    });
-    const data = JSON.parse(sessionStorage.getItem('data'));
-    const productName = document.getElementById('checkout-product-name');
-    const price = document.getElementById('checkout-price');
-    const sproductName = document.getElementById('product-name');
-    sproductName.innerText = '[' + data.product_name + ']';
-    productName.innerText = data.product_name;
-    let amount = data.bid_ammound;
-    amount = String(amount)
-    let pr = "";
-    for (let i = 0; i < amount.length; i++) {
-        let a = amount.substr(i, 1);
-        if (a >= '0' && a <= '9' || a === '.')
-            pr += amount[i];
-    }
+                }
+            }
+            $('#MetaMusk-connect').on('click', async(e) => {
+                e.preventDefault();
 
-    price.innerText = pr;
-    const metamask = localStorage.getItem('metamask_wallet');
-    await sessionStorage.setItem('PrIcE', pr);
+                if (!window.ethereum) {
+                    alert('Please install MetaMask!');
+                    return;
+                }
+
+                const account = await ethereum.request({ method: 'eth_requestAccounts' });
+                localStorage.setItem('metamask_wallet', account[account.length - 1]);
+                sessionStorage.setItem('wallet-timer', "05:00");
+                ethereumListener();
+                // connectionsucced();
+                $('#confirm-payment').show();
+                $('#connect-wallet').hide();
+                $("#connect-wallet2").hide();
+                $('#wallted-connected').show();
+                // $('#connect-wallet-close').click();
+                setTimeout(connectionsucced, 1000)
 
 
-    if (metamask || localStorage.getItem('walletconnect')) {
-        // wallet connected
-        $('#confirm-payment').show();
-        $("#connect-wallet").hide();
-        $("#connect-wallet2").hide();
-        $('#wallted-connected').show();
-        // connectionsucced();
+            });
+            const data = JSON.parse(sessionStorage.getItem('data'));
+            const productName = document.getElementById('checkout-product-name');
+            const price = document.getElementById('checkout-price');
+            const sproductName = document.getElementById('product-name');
+            sproductName.innerText = '[' + data.product_name + ']';
+            productName.innerText = data.product_name;
+            let amount = data.bid_ammound;
+            amount = String(amount)
+            let pr = "";
+            for (let i = 0; i < amount.length; i++) {
+                let a = amount.substr(i, 1);
+                if (a >= '0' && a <= '9' || a === '.')
+                    pr += amount[i];
+            }
 
-    }
-    $('#coinbase-connect-buttonx').on('click', async () => {
-        const button = document.getElementById('coinbase-connect-button');
-        await button.click();
-    })
+            price.innerText = pr;
+            const metamask = localStorage.getItem('metamask_wallet');
+            await sessionStorage.setItem('PrIcE', pr);
 
-    $('#coinbase-payment-done-100').on('click', () => {
-        if (localStorage.getItem('walletconnect')) {
-            confirmPayment('walletconnect');
-            return;
-        }
-        confirmPayment('coinbase')
-    })
-    /*==============================
+
+            if (metamask || localStorage.getItem('walletconnect')) {
+                // wallet connected
+                $('#confirm-payment').show();
+                $("#connect-wallet").hide();
+                $("#connect-wallet2").hide();
+                $('#wallted-connected').show();
+                // connectionsucced();
+
+            }
+            $('#coinbase-connect-buttonx').on('click', async() => {
+                const button = document.getElementById('coinbase-connect-button');
+                await button.click();
+            })
+
+            $('#coinbase-payment-done-100').on('click', () => {
+                    if (localStorage.getItem('walletconnect')) {
+                        confirmPayment('walletconnect');
+                        return;
+                    }
+                    confirmPayment('coinbase')
+                })
+                /*==============================
        Ethereum transaction
    ==============================*/
-    const writingagain = (e) => {
-        console.log(e);
-    }
+            const writingagain = (e) => {
+                console.log(e);
+            }
 
-    $('#full-name-xx').on('click', (e) => {
-        e.target.style.border = '2px solid #232129';
-    });
-    $('#email-xx').on('click', (e) => {
-        e.target.style.border = '2px solid #232129';
-    });
-    $('#telegram-username-xx').on('click', (e) => {
-        e.target.style.border = '2px solid #232129';
-    });
-    const confirmPayment = async (base) => {
+            $('#full-name-xx').on('click', (e) => {
+                e.target.style.border = '2px solid #232129';
+            });
+            $('#email-xx').on('click', (e) => {
+                e.target.style.border = '2px solid #232129';
+            });
+            $('#telegram-username-xx').on('click', (e) => {
+                e.target.style.border = '2px solid #232129';
+            });
 
-        if (localStorage.getItem('walletconnect')) {
-            mobileversionpay();
-            return;
-        }
+            const confirmPayment = async(base) => {
+
+                    if (localStorage.getItem('walletconnect')) {
+                        mobileversionpay();
+                        return;
+                    }
 
 
-        // check user data
-        // const firstName = $('#first-name-xx').val();
-        // const lastName = $('#last-name-xx').val();
-        const emailX = $('#email-xx').val();
-        const telegramUsernameX = $('#telegram-username-xx').val();
-        const fullName = $('#full-name-xx').val();
-        // console.log(fullName)
-        let ok = true;
-        if (fullName.length === 0) {
-            $('#full-name-xx').css('border', '1px solid red');
-            ok = false;
-        }
+                    // check user data
+                    // const firstName = $('#first-name-xx').val();
+                    // const lastName = $('#last-name-xx').val();
+                    const emailX = $('#email-xx').val();
+                    const telegramUsernameX = $('#telegram-username-xx').val();
+                    const fullName = $('#full-name-xx').val();
+                    // console.log(fullName)
+                    let ok = true;
+                    if (fullName.length === 0) {
+                        $('#full-name-xx').css('border', '1px solid red');
+                        ok = false;
+                    }
 
-        if (emailX.length === 0) {
-            $('#email-xx').css('border', '1px solid red');
-            ok = false;
-        }
-        if (telegramUsernameX.length === 0) {
-            $('#telegram-username-xx').css('border', '1px solid red');
-            ok = false;
-        }
-        if (!ok) return;
-        let web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
-        const data = JSON.parse(sessionStorage.getItem('data'));
-        const price = data.bid_ammound;
-        const accounts = await web3.eth.getAccounts();
-        const name = fullName;
-        const telegramusername = telegramUsernameX;
-        const productName = data.product_name;
-        const to = emailX;
-        const total = price;
-        const pdflink = "http://www.africau.edu/images/default/sample.pdf";
-        const supportteamlink = "http://localhost:5501/";
-        const message = `${`
+                    if (emailX.length === 0) {
+                        $('#email-xx').css('border', '1px solid red');
+                        ok = false;
+                    }
+                    if (telegramUsernameX.length === 0) {
+                        $('#telegram-username-xx').css('border', '1px solid red');
+                        ok = false;
+                    }
+                    if (!ok) return;
+                    let web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
+                    const data = JSON.parse(sessionStorage.getItem('data'));
+                    const price = data.bid_ammound;
+                    const accounts = await web3.eth.getAccounts();
+                    const balance = await web3.eth.getBalance(accounts);
+
+
+                    const name = fullName;
+                    const telegramusername = telegramUsernameX;
+                    const productName = data.product_name;
+                    const to = emailX;
+                    const total = price;
+                    const pdflink = "http://www.africau.edu/images/default/sample.pdf";
+                    const supportteamlink = "http://localhost:5501/";
+                    const message = `${`
         <html>
 	<style>
 		p {
