@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+*,h1#product-name,a#buy-item,li,input,ul[type="text"],h2{
+    font-family: 'Orbitron', sans-serif !important;
+    font-style: italic;
+}
+
+canvas.particles-js-canvas-el {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.asset_clock {
+    color: white;
+    font-size: 13px;
+}
+div#asset__clock {
+    color: white;
+    font-size: 20px;
+}
+
+.card.hide {
+    display: none !important;
+}
+
+.card{
+	background-color: transparent !important;
+}
+
+img.qr-img {
+    width: 41%;
+}
+
+.first {
+    width: 50%;
+}
+
+.second {
+    width: 50%;
+    text-align: right;
+}
+
+.price_main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card{
+	background-color: transparent !important;
+}
+
+
+
+img.qr-img {
+    width: 41%;
+}
+
+.first {
+    width: 50%;
+}
+
+.second {
+    width: 50%;
+    text-align: right;
+}
+
+.price_main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card{
+	background-color: transparent !important;
+}
+
+
+.asset__timer front {
+    padding-left: 20px !important;
+    border-left: 1px solid #222227 !important;
+    padding-right: 0px !important;
+    border-right:none !important;
+}
+
+div.asset_clock {
+    font-size: 11px !important;
+}
+
+.card {
+    outline: none;
+    border-color: #9737ff;
+    box-shadow: 0 0 25px #9737ff;
+}
+
+/*.card {
+    outline: none;
+    border: 10px solid;
+    border-image-slice: 1;
+    border-width: 5px;
+    border-image-source: linear-gradient(to right, #9737ff, #45ceea);
+    box-shadow: 1px -1px 16px 4px #80c7ff, -11px -7px 27px 1px #8e5cff, -22px 27px 11px 14px rgb(0 0 0 / 0%);
+}*/
+
+
+a.nav-trigger {
+    display: none;
+}
+
+#buy-item img {
+    width: 31px;
+    margin-left: 13px;
+}
+
+
+.card {
+    position:relative ;
+}
+#ar img {
+    position: absolute;
+    z-index: 1;
+    top: 3%;
+    right: 5%;
+    width: 46px;
+}
+
+li.buyBtn {
+    border: 2px solid #9737ff;
+    padding: 6px 32px;
+	box-shadow: 0 0 47px #ac60ff;
+}
+
+button.buyBtn {
+    margin-right: 20px;
+    padding: 5px 13px;
+    background: transparent;
+    color: white;
+    border: 2px solid #9737ff;
+    font-family: 'Orbitron', sans-serif !important;
+    font-style: italic !important;
+    box-shadow: 0 0 47px #ac60ff;
+}
+
+@media only screen and (min-width :650px) {
+	button.buyBtn {
+    display: none;
+}
+}
+@media only screen and (max-width :640px) {
+.top_line.container {
+    padding-right: 0px;
+}
+}

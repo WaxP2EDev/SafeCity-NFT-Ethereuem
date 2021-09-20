@@ -1,0 +1,53 @@
+
+ *, *::before, *::after {
+   box-sizing: border-box;
+}
+
+ .containerr {
+   display: grid;
+   place-items: center;
+   height: 15vh;
+}
+ .btn, .myButton, .myButton::before {
+   border: 1px solid #9737ff;
+   border-radius: 8px;
+   cursor: pointer;
+   min-width: 200px;
+   min-height: 60px;
+}
+ .myButton {
+   background: #0a0a0c;
+   color: #45ceea;
+   font-size: 18px;
+   letter-spacing: 0.5px;
+   position: relative;
+   transform: skewX(20deg);
+}
+ .myButton::before {
+   content: attr(data-label);
+   background: #16151a;
+   display: grid;
+   place-items: center;
+   position: absolute;
+   top: -10px;
+   left: 10px;
+   z-index: -1;
+   transition: all 0.5s ease;
+}
+ .myButton:hover::before {
+   top: -1px;
+   left: -1px;
+}
+ .myButton:focus {
+   outline: none;
+}
+ 
+
+a.bidbtn {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+   margin-top: 40px;
+}

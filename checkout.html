@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-grid.min.css" />
+		<link rel="stylesheet" href="css/owl.carousel.min.css" />
+		<link rel="stylesheet" href="css/magnific-popup.css" />
+		<link rel="stylesheet" href="css/select2.min.css" />
+		<link rel="stylesheet" href="css/main.css" />
+
+		<!-- Favicons -->
+	<link rel="icon" type="image/png" href="https://safe.city/wp-content/uploads/2021/05/cropped-02.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="https://safe.city/wp-content/uploads/2021/05/cropped-02.png">
+
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="Dmitry Volkov" />
+		<title>SAFECITY – checkout</title>
+	</head>
+	<body>
+	
+		</script>
+		<!-- coinbase connect wallet popup -->
+		<div id="coinbase-connect"></div>
+		<div id="walletconnect-connect-root"></div>
+		<!-- <button id="walletconnect-connect"
+			style="color: white;z-index: 1000000;"
+		>connect</button> -->
+		<!-- coinbase connect wallet popup end-->
+		<!-- checkout page header -->
+		<div class="checkout-page-header">
+			<!-- checkout page header left side -->
+			<div class="checkout-page-header-left"></div>
+			<!-- checkout page header right -->
+			<div class="checkout-page-header-right">
+				<!-- open wallet options -->
+				<a
+					id="connect-wallet2"
+					href="#modal-bid"
+					class="asset__btn asset__btn--full asset__btn--clr connect-wallet-button open-modal-connect-wallet"
+				>
+					connect wallet
+				</a>
+
+				<p
+				style="display: none;"
+					id="wallted-connected"
+					class="asset__btn asset__btn--full asset__btn--clr connect-wallet-button  deactive"
+				>
+					<span id="timer"></span>
+					<span class="hellow">wallet is connected</span>
+				</p>
+			</div>
+		</div>
+		<!-- checkout page header end -->
+
+		<div class="checkout-page-body" id="checkout-body">
+			<!-- user form -->
+			<div style="color: white" class="userform" id="user-form-xx">
+				<div class="formbody">
+					<form class="user-form-checkout">
+						<level>Full name</level>
+						<input placeholder="Full name" id="full-name-xx" type="text"/>
+						<!-- <level>First name</level>
+						<input placeholder="First name" id="first-name-xx" type="text"/>
+						<level>Last name</level>
+						<input placeholder="Last name" id="last-name-xx" type="text"/> -->
+						<level>Email</level>
+						<input placeholder="Email" id="email-xx" type="email"/>
+						<level>Telegram username</level>
+						<input placeholder="Telegram username" id="telegram-username-xx" type="text"/>
+
+					</form>
+				</div>
+			</div>
+			<!-- user form end -->
+			<!-- checkout div -->
+			<div class="checkout-ax">
+				<!-- while payment is pending -->
+				<div style="display: block" id="payment-not-done">
+					<div id="checkout-product-name" class="checkout-product-name"></div>
+					<div class="product-price">
+						<div class="coin-logo"><img src="./img/coinLogo/ethereum.svg" /> <span>ETH</span></div>
+						<div id="checkout-price" class="price">12.22</div>
+					</div>
+					<button
+						id="confirm-payment"
+						style="display: none"
+						class="confirm-button asset__btn asset__btn--full asset__btn--clr confirm-payment"
+					>
+						confirm payment
+					</button>
+					<a
+						href="#modal-bid"
+						id="connect-wallet"
+						class="
+							confirm-button
+							asset__btn asset__btn--full asset__btn--clr
+							confirm-payment
+							open-modal-connect-wallet
+						"
+					>
+						connect wallet
+					</a>
+				</div>
+				<!-- payment done -->
+				<div style="display: none" class="payment-done" id="payment-done">
+					<p>you have succesfully purchased<br/> <strong id="product-name">product name</strong></p>
+					<a href="index.html"
+						><button class="confirm-button asset__btn asset__btn--full asset__btn--clr">
+							back to home
+						</button></a
+					>
+				</div>
+				<!-- payment done end -->
+			</div>
+			<!-- checkout div end -->
+		</div>
+
+		<!-- modal connect wallet -->
+		<div id="modal-bid" class="zoom-anim-dialog modal modal--form mfp-hide">
+			<button id="connect-wallet-close" class="modal__close" type="button">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+					<path
+						d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"
+					/>
+				</svg>
+			</button>
+
+			<div style="display: none;" id="error-message-modal">
+				<div>
+					<img class="error-messaeg-alert" src="img/alert.png"/>
+					<p>Sorry, your transaction have been failed. Please try again leter!</p>
+				</div>
+			</div>
+
+			<div style="display: none;" id="success-message-modal">
+				<div>
+					<div class="success-messaeg-alert">
+						<div class="success-animation">
+							<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
+						</div>
+					</div>
+					
+					<p>Wallet succesfully connected!</p>
+				</div>
+			</div>
+
+			<div id="model-axt-conntect-wll">
+				<h4 class="sign__title connet-xx">Connect your wallet.</h4>
+			<p class="model_activity">
+				By connecting your wallet, you agree to our <a class="link-xx" href="">Terms of Service </a>and our <a class="link-xx" href="">Privacy Policy</a>.
+
+
+			</p>
+			<!-- metaTask wallet -->
+				<button id="MetaMusk-connect" class="connect-wallet-wallet-name metamask metamask-xxy" type="button">
+					<div class="wallet-name ">MetaMask</div>
+					<div class="wallet-icon"><img src="./img/walletIcons/metamask.svg" /></div>
+				</button>
+				<button id="MetaMusk-connect-mobile" style="display: none;" class="connect-wallet-wallet-name trustwallet metamask-xxy" type="button">
+					<div class="wallet-name ">walletconnect</div>
+					<div class="wallet-icon"><img src="./img/walletIcons/walletconnect.png" /></div>
+				</button>
+			<button id="coinbase-connect-buttonx" class="connect-wallet-wallet-name coinbase" type="button">
+				<div class="wallet-name">Coinbase Wallet</div>
+				<div class="wallet-icon"><img src="./img/walletIcons/coinbase.png" /></div>
+			</button>
+				<button id="open-in-coinbase-wallet" class="connect-wallet-wallet-name coinbase" type="button">
+					<div class="wallet-name">open in Coinbase Wallet</div>
+					<div class="wallet-icon"><img src="./img/walletIcons/coinbase.png" /></div>
+				</button>
+			<button id="trust-wallet-connect" class="connect-wallet-wallet-name trustwallet" type="button">
+				<div class="wallet-name">Trust Wallet</div>
+				<div class="wallet-icon"><img src="./img/walletIcons/trustWallet.png" /></div>
+			</button>
+			<button id="pay-with-coinbase-button" style="display: none"></button>
+			<button id="coinbase-connect-button" style="display: none"></button>
+			<button id="coinbase-connected-done-100" style="display: none"></button>
+			<button id="coinbase-payment-done-100" style="display: none"></button>
+			<button id="walletconnect-connect" style="display: none">connect</button>
+			<button id="walletconnect-payment-xyz" style="display: none;"></button>
+			<button id="coinbase-payment-canceled" style="display: none;"></button>
+			</div>
+		</div>
+		<!-- modal wallet end -->
+		<!-- Error model start -->
+
+
+
+
+		<!-- Error model end -->
+		<!-- JS -->
+		<script src="js/jquery-3.5.1.min.js"></script>
+		<script src="js/bootstrap.bundle.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="https://smtpjs.com/v3/smtp.js"></script>
+		<script src="js/EmailSend.js"></script>
+		<script src="js/select2.min.js"></script>
+		<script src="js/smooth-scrollbar.js"></script>
+		<script src="js/jquery.countdown.min.js"></script>
+		<script src="js/web3.min.js"></script>
+		<script src="js/checkout.js"></script>
+		<script src="js/main.js"></script>
+		<!-- coinbase -->
+		<script src="js/walletlink/coinbase.js"></script>
+		<script src="js/walletlink/static/js/2.e0d562fb.chunk.js"></script>
+		<script src="js/walletlink/static/js/main.3b7d304c.chunk.js"></script>
+		<!-- walletconnect -->
+		<script src="js/walletconnect/script.js"></script>
+		<script src="js/walletconnect/static/js/2.560ae210.chunk.js"></script>
+		<script src="js/walletconnect/static/js/main.e1650e8c.chunk.js"></script>
+	</body>
+</html>

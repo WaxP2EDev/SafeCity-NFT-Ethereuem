@@ -1,0 +1,210 @@
+
+*:focus {
+    outline: 0;
+}
+
+sup {
+    vertical-align: super;
+}
+sub {
+    vertical-align: sub;
+}
+div a:hover, div a:active, div a:focus {
+    outline: none;
+}
+
+a:hover, a:active {
+    text-decoration: none;
+    color: #000;
+}
+
+.navigation__list li a {
+    color: white;
+}
+/* Animation */
+#navigation {
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+}
+/*Кнока меню*/
+
+html.overflow {
+    overflow: hidden;
+}
+.button_toogle {
+    font-size: 0px;
+    height: 20px;
+    position: relative;
+    right: 0px;
+    top: 0px;
+    width: 20px;
+    background: transparent;
+    display: none;
+    z-index: 1114;
+    padding-bottom: 3px;
+}
+.c-hamburger {
+    display: inline-block;
+    z-index: 111;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background: none;
+    font-size: 0;
+    text-indent: -9999px;
+    appearance: none;
+    box-shadow: none;
+    border-radius: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.c-hamburger.is-active .c-hamburger span {
+    background: #fff;
+}
+.c-hamburger:focus {
+    outline: none;
+}
+.c-hamburger span {
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    border-radius: 6px;
+    background: #fff;
+}
+.c-hamburger span::before, .c-hamburger span::after {
+    left: 0px;
+    position: absolute;
+    display: block;
+    border-radius: 6px;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    content: "";
+}
+.c-hamburger span::before {
+    top: -7px;
+    width: 20px;
+}
+.c-hamburger span::after {
+    bottom: -7px;
+    width: 14px;
+}
+.c-hamburger--htx span {
+    transition: background 0s 0.3s;
+}
+.c-hamburger--htx span::before, .c-hamburger--htx span::after {
+    transition-duration: 0.3s, 0.3s;
+    transition-delay: 0.3s, 0s;
+}
+.c-hamburger--htx span::before {
+    transition-property: top, transform;
+}
+.c-hamburger--htx span::after {
+    transition-property: bottom, transform;
+}
+.c-hamburger--htx.is-active span {
+    background: none;
+}
+.c-hamburger--htx.is-active span::before {
+    top: 0;
+    transform: rotate(45deg);
+    width: 100%;
+}
+.c-hamburger--htx.is-active span::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+    width: 100%;
+}
+.c-hamburger--htx.is-active span::before, .c-hamburger--htx.is-active span::after {
+    transition-delay: 0s, 0.3s;
+}
+#top__line {
+    position: absolute;
+    z-index: 112;
+    padding: 25px 0px;
+    left: 0px;
+    right: 0px;
+}
+#navigation {
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    padding-top: 110px;
+    text-align: center;
+    z-index: 111;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    background: black;
+}
+#navigation.active {
+    transform: translateY(0%);
+    opacity: 1;
+    visibility: visible;
+}
+.navigation__list li a {
+    font-size: 18px;
+    display: inline-block;
+    padding: 10px 15px;
+}
+.navigation__btn {
+    position: absolute;
+    bottom: 30px;
+    left: 15px;
+    text-align: center;
+    right: 15px;
+}
+.navigation__btn a {
+    display: inline-block;
+}
+.navigation__list li a:hover {
+    color: #9737ff;
+}
+.menu_list li {
+    display: inline-block;
+    padding-right: 35px;
+}
+.menu_list ul {
+    font-size: 0px;
+}
+.menu_list li a {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+}
+.menu_list li a:hover {
+    color: #9737ff;
+}
+.menu_list {
+    padding-left: 82px;
+}
+.top__line-left {
+    display: flex;
+    padding: 0px 15px;
+    align-items: center;
+}
+.top__line-right {
+    padding: 0px 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.top__line-logo {
+    font-size: 0px;
+}
+
+
+.logo img {
+    width: 133px;
+}

@@ -1,0 +1,55 @@
+	.row.justify-content-between.align-items-center {
+    display: flex;
+    width: 100%;
+}
+@media only screen and (max-width: 1200px) {}
+@media only screen and (max-width: 992px) {
+
+	
+	#top__line {
+		padding: 20px 0px;
+	}
+.menu_list {
+    display: none;
+}
+	.button_toogle {
+		display: block;
+	}
+}
+@media only screen and (max-width: 600px) {
+
+div.asset_clock {
+    font-size: 16px !important;
+	line-height: 16px;
+    margin-top: 10px;
+
+}
+
+
+
+/*tiimer text nwe*/
+
+.card__price span:last-child {
+    font-size: 15px;
+}
+
+.card__info .card__price {
+    max-width: 40%;
+}
+
+.asset__timer.front {
+    min-width: 60%;
+}
+
+
+
+
+
+
+
+
+}
+@media only screen and (max-width :420px) {
+	
+}
+@media only screen and (max-width :360px) {}
