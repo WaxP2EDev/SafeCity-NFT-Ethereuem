@@ -8,17 +8,17 @@ $(document).ready(async() => {
             //     }
             // })();
 
-            window.web3 = new Web3(window.web3.currentProvider);
-            window.ethereum.enable();
-            console.log(window.web3);
+            // window.web3 = new Web3(window.web3.currentProvider);
+            // window.ethereum.enable();
 
-            // const price = data.bid_ammound;
-            const accounts = await window.web3.eth.getAccounts();
-            const balance = await window.web3.eth.getBalance(accounts[0]);
-            let result = balance / 1000000000000000000;
-
-            $(".balance").html(Math.round(result * 100) / 100);
-            $(".address").text(accounts[0].substring(0, 6) + ".." + accounts[0].substring(accounts[0].length - 4, accounts[0].length));
+            // // const price = data.bid_ammound;
+            // const accounts = await window.web3.eth.getAccounts();
+            // const balance = await window.web3.eth.getBalance(accounts[0]);
+            // let result = balance / 1000000000000000000;
+            // var balance = sessionStorage.getItem("balance")
+            // balance = JSON.parse(balance);
+            // $(".balance").html(balance.balance);
+            // $(".address").text(balance.address);
             if (window.ethereum) {
                 ethereumListener();
             }

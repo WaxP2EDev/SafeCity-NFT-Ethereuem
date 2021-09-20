@@ -8,29 +8,30 @@ const Fortmatic = window.Fortmatic;
 let web3Modal
 let provider;
 let selectedAccount;
+
 function init() {
-  const providerOptions = {
-    walletconnect: {
-      package: WalletConnectProvider,
-      options: {
-        // Mikko's test key - don't copy as your mileage may vary
-        infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
-      }
-    },
+    const providerOptions = {
+        walletconnect: {
+            package: WalletConnectProvider,
+            options: {
+                // Mikko's test key - don't copy as your mileage may vary
+                infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+            }
+        },
 
-    fortmatic: {
-      package: Fortmatic,
-      options: {
-        // Mikko's TESTNET api key
-        key: "pk_test_391E26A3B43A3350"
-      }
-    }
-  };
+        fortmatic: {
+            package: Fortmatic,
+            options: {
+                // Mikko's TESTNET api key
+                key: "pk_test_391E26A3B43A3350"
+            }
+        }
+    };
 
-  web3Modal = new Web3Modal({
-    cacheProvider: false, // optional
-    providerOptions, // required
-  });
+    web3Modal = new Web3Modal({
+        cacheProvider: false, // optional
+        providerOptions, // required
+    });
 
 }
 
@@ -40,26 +41,30 @@ function init() {
  */
 async function fetchAccountData() {
 
-  // Get a Web3 instance for the wallet
-  const web3 = new Web3(provider);
+    // Get a Web3 instance for the wallet
+    const web3 = new Web3(provider);
 
-  console.log("Web3 instance is", web3);
+    console.log("Web3 instance is", web3);
 
-  // Get connected chain id from Ethereum node
-  const chainId = await web3.eth.getChainId();
-  // Load chain information over an HTTP API
-  // Get list of accounts of the connected wallet
-  const accounts = await web3.eth.getAccounts();
+    // Get connected chain id from Ethereum node
+    const chainId = await web3.eth.getChainId();
+    // Load chain information over an HTTP API
+    // Get list of accounts of the connected wallet
+    const accounts = await web3.eth.getAccounts();
 
-  // MetaMask does not give you all accounts, only the selected account
-  console.log("Got accounts", accounts);
-  selectedAccount = accounts[0];
+    // MetaMask does not give you all accounts, only the selected account
+    console.log("Got accounts", accounts);
+    selectedAccount = accounts[0];
 
-  const balance = await web3.eth.getBalance(selectedAccount);
-  const ethBalance = web3.utils.fromWei(balance, "ether");
-  $(".account").html(selectedAccount.substring(0,6)+".."+selectedAccount.substring(selectedAccount.length-4,selectedAccount.length));
-  $(".balance").html(Math.round(ethBalance*100)/100);
-  document.location="/checkout";
+    const balance = await web3.eth.getBalance(selectedAccount);
+    const ethBalance = web3.utils.fromWei(balance, "ether");
+    $(".account").html(selectedAccount.substring(0, 6) + ".." + selectedAccount.substring(selectedAccount.length - 4, selectedAccount.length));
+    $(".balance").html(Math.round(ethBalance * 100) / 100);
+    // const balance = { `address`: $(".account").text() , `balance`: Math.round(ethBalance * 100) / 100 };
+    // sessionStorage.setItem('balance', JSON.stringify(balance));
+
+
+    document.location = "/checkout";
 }
 
 
@@ -71,7 +76,7 @@ async function fetchAccountData() {
  * - User connects wallet initially
  */
 async function refreshAccountData() {
-  await fetchAccountData(provider);
+    await fetchAccountData(provider);
 }
 
 
@@ -79,29 +84,29 @@ async function refreshAccountData() {
  * Connect wallet button pressed.
  */
 async function onConnect() {
-  try {
-    provider = await web3Modal.connect();
-  } catch(e) {
-    console.log("Could not get a wallet connection", e);
-    return;
-  }
+    try {
+        provider = await web3Modal.connect();
+    } catch (e) {
+        console.log("Could not get a wallet connection", e);
+        return;
+    }
 
-  // Subscribe to accounts change
-  provider.on("accountsChanged", (accounts) => {
-    fetchAccountData();
-  });
+    // Subscribe to accounts change
+    provider.on("accountsChanged", (accounts) => {
+        fetchAccountData();
+    });
 
-  // Subscribe to chainId change
-  provider.on("chainChanged", (chainId) => {
-    fetchAccountData();
-  });
+    // Subscribe to chainId change
+    provider.on("chainChanged", (chainId) => {
+        fetchAccountData();
+    });
 
-  // Subscribe to networkId change
-  provider.on("networkChanged", (networkId) => {
-    fetchAccountData();
-  });
+    // Subscribe to networkId change
+    provider.on("networkChanged", (networkId) => {
+        fetchAccountData();
+    });
 
-  await refreshAccountData();
+    await refreshAccountData();
 }
 
 /**
@@ -109,22 +114,22 @@ async function onConnect() {
  */
 async function onDisconnect() {
 
-  console.log("Killing the wallet connection", provider);
+    console.log("Killing the wallet connection", provider);
 
-  if(provider.close) {
-    await provider.close();
-    await web3Modal.clearCachedProvider();
-    provider = null;
-  }
-  selectedAccount = null;
+    if (provider.close) {
+        await provider.close();
+        await web3Modal.clearCachedProvider();
+        provider = null;
+    }
+    selectedAccount = null;
 }
 
 
 /**
  * Main entry point.
  */
-window.addEventListener('load', async () => {
-  init();
-  document.querySelector("#buy-item").addEventListener("click", onConnect);
-  
+window.addEventListener('load', async() => {
+    init();
+    document.querySelector("#buy-item").addEventListener("click", onConnect);
+
 });

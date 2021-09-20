@@ -1,5 +1,23 @@
-$(document).ready(function() {
+$(document).ready(async function() {
     "use strict"; // start of use strict
+    window.web3 = new Web3(window.web3.currentProvider);
+    const accounts = await window.web3.eth.getAccounts();
+    if (accounts[0] !== undefined) {
+        const balance = await window.web3.eth.getBalance(accounts[0]);
+        let result = balance / 1000000000000000000;
+        $(".walletInfo").css("opacity", "1");
+        $(".balance").html(Math.round(result * 100) / 100);
+        $(".address").text(accounts[0].substring(0, 6) + ".." + accounts[0].substring(accounts[0].length - 4, accounts[0].length));
+
+
+    } else {
+        $(".asset__btns a").attr("id", "buy-item");
+
+    }
+    $('#prebuy-item').on('click', (e) => {
+        window.location = "checkout.html"
+
+    })
     let productName = $('#product-name').text();
     let productPrice = $('#product-price').text();
     const productInfo = {
@@ -390,7 +408,7 @@ $(document).ready(function() {
         Scrollbar.init(document.querySelector('#asset__actions--scroll'), {
             damping: 0.1,
             renderByPixels: true,
-            alwaysShowTracks: true,
+            alwallysShowTracks: true,
             continuousScrolling: false,
         });
     }
@@ -398,8 +416,11 @@ $(document).ready(function() {
     /*==============================
     	Take a bid
     	==============================*/
+
+
+
     $('#buy-item').on('click', (e) => {
-        console.log('111')
+        alert('tt');
         let aaa = document.getElementById("product-price").innerText;
         let price = aaa;
         let mprice = "";
