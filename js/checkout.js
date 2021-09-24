@@ -17,8 +17,7 @@ $(document).ready(async() => {
             // let result = balance / 1000000000000000000;
             // var balance = sessionStorage.getItem("balance")
             // balance = JSON.parse(balance);
-            // $(".balance").html(balance.balance);
-            // $(".address").text(balance.address);
+
             if (window.ethereum) {
                 ethereumListener();
             }

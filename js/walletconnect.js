@@ -130,6 +130,6 @@ async function onDisconnect() {
  */
 window.addEventListener('load', async() => {
     init();
-    document.querySelector("#buy-item").addEventListener("click", onConnect);
+    // document.querySelector("#buy-item").addEventListener("click", onConnect);
 
 });
