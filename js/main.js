@@ -212,10 +212,16 @@ $(document).ready(async function() {
     $('.web3modal-modal-card>div:nth-child(6) .web3modal-provider-container').on('click', async function(e) {
         // window.slope.onconnect();
         // window.slope.on('connect', () => alert("connected!"))
+        alert('coin98');
         if (typeof window.coin98 == 'undefined') {
             alert('Coin98 Extension is not installed!');
         };
-        mobile.coin98.sol.request({
+        // const solanaWeb3 = require("@solana/web3.js");
+
+        // const Solana = new solanaWeb3.Connection(
+        //     "YOUR_QUICKNODE_HTTP_PROVIDER__HERE"
+        // );
+        window.coin98.sol.request({
             method: 'sol_accounts'
         }).then(accounts => {
             if (accounts[0]) {
